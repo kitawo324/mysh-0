@@ -5,11 +5,11 @@ void mysh_parse_command(const char* command,
 {
   // TODO: Fill this!
   // char *argv = String
-  // char **argv = StringPtr = (**argv)[0]
-  // char ***argv = StringPtrArray
-  **argv  = strtok(command, " ");
+  // char **argv = StringArray
+  // char ***argv = StringArrayPtr
+  (*argv)[0]  = strtok(command, " ");
   *argc = 1;
-  while( **argv = strtok(NULL, " "))
+  while( (*argv)[*argc] = strtok(NULL, " "))
   {
      *argc +=1;
   }
