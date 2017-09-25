@@ -36,7 +36,7 @@ release_and_exit:
     release_argv(argc, argv);
     break;
   }
-
+  
   return 0;
 }
 
