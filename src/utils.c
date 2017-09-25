@@ -6,20 +6,40 @@ void mysh_parse_command(const char* command,
                         int *argc, char*** argv)
 {
   // TODO: Fill this!
-  // argv = StringArrayPtr
-  // *argv = StringArray
-  // **argv = String= char *
-  // ***argv = char
+  // char argv = StringArrayPtr
+  // char *argv = StringArray
+  // char **argv = String
+  char str_buffer[50];
+  int count_buffer;
   char* tempStr;
-  strcpy(tempStr,command);
-  printf("!!! : %s",tempStr);
-  //(**argv) = (char *)malloc(strlen(command));
-  //(*argv)[0]  = strtok(tempStr, " ");
-  //*argc = 1;
-  //while( (*argv)[*argc] = strtok(NULL, " "))
-  //{
-     //*argc +=1;
-  //}
+  int commandCount;
+  char* tokStr;
+
+  
+  strcpy(str_buffer,command);
+  commandCount = strlen(command);
+  //str_buffer[0] = '\0';
+  
+
+  (*argv) =(char**)calloc(commandCount , sizeof(char*));
+  
+  tokStr  = strtok(str_buffer, " ");
+  count_buffer = strlen(tokStr);
+  
+  (*argv)[0] = (char*)calloc(count_buffer , sizeof(char));
+  count_buffer = 0;
+  *argc = 1;
+  
+  
+  
+  while( tokStr = strtok(NULL, " "))
+  {
+    count_buffer = strlen(tokStr);
+    (*argv)[(*argc)] = (char*)calloc(count_buffer , sizeof(char));
+    count_buffer = 0;
+    *argc +=1;
+  }
   return ;
   
 }
+
