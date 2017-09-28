@@ -5,7 +5,7 @@
 #include "commands.h"
 #include "utils.h"
 
-static void release_argv(int argc, char** argv);
+static void release_argv(int argc, char*** argv);
 
 int main()
 {
@@ -21,28 +21,33 @@ int main()
     if (strcmp(buf, "") == 0) {
       goto release_and_continue;
     } else if (strcmp(argv[0], "cd") == 0) {
-      do_cd(argc, argv);
+      if(do_cd(argc, argv)){
+        fprint(stderr,"cd:Invalid arugments\n");
+      }
     } else if (strcmp(argv[0], "pwd") == 0) {
-      do_pwd(argc, argv);
+      if(do_pwd(argc, argv)){
+        fprint(stderr."pwd:Invalid arguments\n");
+      }
     } else if (strcmp(argv[0], "exit") == 0) {
-      goto release_and_continue;
+      goto release_and_exit;
     } else {
       fprintf(stderr, "%s: command not found\n", argv[0]);
     }
 release_and_continue:
-    release_argv(argc, argv);
+    release_argv(argc, &argv);
     continue;
 release_and_exit:
-    release_argv(argc, argv);
+    release_argv(argc, &argv);
     break;
   }
   
   return 0;
 }
 
-static void release_argv(int argc, char** argv) {
+static void release_argv(int argc, char*** argv) {
   for (int i = 0; i < argc; ++i) {
-    free(argv[i]);
+    free((*argv)[i]);
   }
-  free(argv);
+  free(*argv);
+  *argv = NULL;
 }
