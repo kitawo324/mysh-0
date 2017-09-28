@@ -22,11 +22,11 @@ int main()
       goto release_and_continue;
     } else if (strcmp(argv[0], "cd") == 0) {
       if(do_cd(argc, argv)){
-        fprint(stderr,"cd:Invalid arugments\n");
+        fprintf(stderr,"cd:Invalid arugments\n");
       }
     } else if (strcmp(argv[0], "pwd") == 0) {
       if(do_pwd(argc, argv)){
-        fprint(stderr."pwd:Invalid arguments\n");
+        fprintf(stderr,"pwd:Invalid arguments\n");
       }
     } else if (strcmp(argv[0], "exit") == 0) {
       goto release_and_exit;
